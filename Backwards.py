@@ -1,0 +1,1 @@
+print(*list(reversed(input())),sep="") #reversed : 뒤집어나오게 함
