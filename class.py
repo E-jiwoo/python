@@ -33,3 +33,33 @@ a=Bssm("부소마","학생",17,"이지우")
 
 a.intro()
         
+# __str__() ; 인스턴스 자체를 출력할 때 문자열 형식을 지정해주는 함수
+
+'''
+Grade 클래스를 만들고, 클래스 안에 메소드를 정의해 다음 코드와 실행결과가 아래와 같이 나오도록 코딩
+
+a1=Grade("나영", 89)
+a1.s_grade()
+print(a1)
+
+90점 이상 : A
+80점 이상 : B
+'''
+
+class Grade:
+    def __init__(self, name, score):
+        self.name=name
+        self.score=score
+    def grade(self):
+        if(self.score > 89):
+            self.score='A'
+        elif(self.score > 79):
+            self.score='B'
+        else:
+            self.score='C'
+    def __str__(self):
+        return "%s : %c 등급" %(self.name, self.score)
+    
+a1=Grade("나영", 89)
+a1.grade()
+print(a1)
