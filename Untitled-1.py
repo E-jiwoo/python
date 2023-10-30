@@ -1,6 +1,6 @@
 def my_pop(input_list):
     if not input_list:
-        return 0
+        return None
     
     last_item = input_list[-1]
     del input_list[-1]
