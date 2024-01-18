@@ -1,7 +1,7 @@
-Deque_size = 5
+Deque_size = 6
 list = [None] * Deque_size
-front = -1
-rear = -1
+front = 0
+rear = 0
 
 
 def isEmpty():
@@ -15,7 +15,7 @@ def isEmpty():
 def isFull():
     global rear, front
 
-    if (rear + 1) % 5 == front:
+    if (rear - 1) % 5 == front:
         return True
     return False
 
@@ -25,9 +25,8 @@ def Addfront(e):
     if isFull():
         print("큐가 가득 찼습니다")
         return 0
-    front = (front + 1) % 5
+    front = (front - 1) % 5
     list[front] = e
-    print("삽입 :", e)
 
 
 def Deletefront():
@@ -78,5 +77,10 @@ def Getrear():
 print("Addfront 확인")
 Addfront(1)
 Addfront(2)
+
+print("Addrear 확인")
+Addrear(1)
+Addrear(2)
+
 
 print(list)

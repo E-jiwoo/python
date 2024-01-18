@@ -2,34 +2,35 @@ class Queue:
     def __init__(self, size):
         self.queue_size = size
         self.list = [None] * self.queue_size
-        self.rear = 0
-        self.front = 0
+        self.front = -1
+        self.rear = -1
+
+    def isFull(self):
+        return self.rear == self.queue_size - 1
 
     def isEmpty(self):
         return self.front == self.rear
 
-    def isFull(self):
-        return (self.rear + 1) % 5 == self.front
-
-    def equence(self, e):
+    def enqueue(self, e):
         if self.isFull():
-            print("큐가 가득 찼습니다")
+            print("큐가 포화상태입니다")
             return 0
-        self.rear = (self.rear + 1) % 5
+        self.rear = self.rear + 1
         self.list[self.rear] = e
 
-    def dequence(self):
+    def dequeue(self):
         if self.isEmpty():
-            print("큐가 비어있습니다")
-            return 0
-        self.front = (self.front + 1) % 5
+            print("큐가 공백상태입니다")
+            return -1
+        self.front = self.front + 1
+        tmp = self.list[self.front]
         self.list[self.front] = None
-        return self.list[self.front]
+        return tmp
 
     def peek(self):
         if self.isEmpty():
             print("큐가 공백상태입니다")
-        return self.list[(self.front + 1) % 5]
+        return self.list[self.front + 1]
 
     def AllPrint(self):
         if self.isEmpty():
@@ -51,22 +52,20 @@ class Queue:
             return 0
         for i in range(-1, self.queue_size):
             self.list[i] = None
-        self.front = 0
-        self.rear = 0
+
+        self.front = -1
+        self.rear = -1
 
 
 queue = Queue(5)
 
-print("push 확인")
-queue.equence(1)
-queue.equence(2)
-queue.equence(3)
-queue.equence(4)
+queue.enqueue(1)
+queue.enqueue(1)
+queue.enqueue(1)
+queue.enqueue(1)
+queue.enqueue(1)
 
-queue.AllPrint()
-queue.AllPrintReverse()
-
-""" 오늘 수업에서 알게된 점
-큐에는 
-선형큐, 원형큐, 우선수위 큐 이렇게 세가지로 있다!
-"""
+print(queue.list)
+print(queue.peek())
+queue.Reset()
+print(queue.list)
